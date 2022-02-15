@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 export default createGlobalStyle`
 	* {
@@ -12,6 +12,10 @@ export default createGlobalStyle`
 	}
 
 	body {
-		font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		${({ theme }) => css`
+			font-family: ${theme.font.family};
+			font-size: ${theme.font.size.medium};
+		`}
+
 	}
 `;
