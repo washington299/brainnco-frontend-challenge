@@ -14,11 +14,11 @@ export default {
 		family:
 			"'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
 		size: {
-			xsmall: "1.2rem",
-			small: "1.4rem",
-			medium: "1.6rem",
-			large: "2.0rem",
-			xlarge: "2.6rem",
+			xsmall: "1.4rem",
+			small: "1.6rem",
+			medium: "2.0rem",
+			large: "2.4rem",
+			xlarge: "2.8rem",
 		},
 		weight: {
 			light: 300,
