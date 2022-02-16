@@ -21,4 +21,16 @@ describe("<Heading />", () => {
 
 		expect(screen.getByRole("heading", { name: /my text/i })).toHaveStyle({ fontSize: "2.4rem" });
 	});
+
+	it("Should render Heading with black color by default", () => {
+		renderWithTheme(<Heading>My text</Heading>);
+
+		expect(screen.getByRole("heading", { name: /my text/i })).toHaveStyle({ color: "#333333" });
+	});
+
+	it("Should render Heading with white color when prop is passed", () => {
+		renderWithTheme(<Heading color="white">My text</Heading>);
+
+		expect(screen.getByRole("heading", { name: /my text/i })).toHaveStyle({ color: "#FFFFFF" });
+	});
 });
