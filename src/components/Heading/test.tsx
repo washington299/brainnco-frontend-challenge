@@ -19,7 +19,7 @@ describe("<Heading />", () => {
 	it("Should render Heading with small size when prop is passed", () => {
 		renderWithTheme(<Heading size="small">My text</Heading>);
 
-		expect(screen.getByRole("heading", { name: /my text/i })).toHaveStyle({ fontSize: "2.4rem" });
+		expect(screen.getByRole("heading", { name: /my text/i })).toHaveStyle({ fontSize: "2.0rem" });
 	});
 
 	it("Should render Heading with black color by default", () => {

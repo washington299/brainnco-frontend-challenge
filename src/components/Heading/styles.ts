@@ -6,7 +6,7 @@ type WrapperProps = Pick<HeadingProps, "size" | "color">;
 
 const wrapperModifier = {
 	small: (theme: DefaultTheme) => css`
-		font-size: ${theme.font.size.large};
+		font-size: ${theme.font.size.medium};
 	`,
 	medium: (theme: DefaultTheme) => css`
 		font-size: ${theme.font.size.xlarge};
@@ -22,6 +22,9 @@ const wrapperModifier = {
 
 export const Wrapper = styled.h2<WrapperProps>`
 	${({ theme, size, color }) => css`
+		font-weight: ${theme.font.weight.bold};
+		text-transform: uppercase;
+
 		${!!size && wrapperModifier[size](theme)};
 		${!!color && wrapperModifier[color](theme)};
 	`}
