@@ -1,7 +1,10 @@
-type HeadingProps = {
+import * as S from "./styles";
+
+export type HeadingProps = {
 	children: React.ReactNode;
+	size?: "small" | "medium";
 };
 
-export const Heading = ({ children }: HeadingProps) => {
-	return <h1>{children}</h1>;
+export const Heading = ({ children, size = "medium" }: HeadingProps) => {
+	return <S.Wrapper size={size}>{children}</S.Wrapper>;
 };
