@@ -39,7 +39,7 @@ describe("<Select />", () => {
 	});
 
 	it("Should render default value correctly", async () => {
-		renderWithTheme(<Select defaultValue="mega-sena" />);
+		renderWithTheme(<Select defaultValue={0} />);
 
 		const megaSenaOption = (await screen.findByRole("option", {
 			name: /mega-sena/i,
