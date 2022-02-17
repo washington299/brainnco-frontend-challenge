@@ -28,11 +28,17 @@ export const Sidebar = ({ loteriaId, loteria, concurso, data }: SidebarProps) =>
 	return (
 		<S.Wrapper bgColor={backgroundColors[loteria]}>
 			<Select defaultValue={loteriaId} />
-			<img src="/logo-sena.png" alt="Logo sena" />
-			<Heading color="white">{loteria}</Heading>
-			<p>
-				Concurso: <strong>{concurso}</strong> - <strong>{formatDate(data)}</strong>
-			</p>
+
+			<S.LogoContent>
+				<S.ImageWrapper>
+					<img src="/logo-sena.png" alt="Logo sena" />
+				</S.ImageWrapper>
+				<Heading color="white">{loteria}</Heading>
+			</S.LogoContent>
+
+			<S.Info>
+				Concurso Nº <strong>{concurso}</strong> - <strong>{formatDate(data)}</strong>
+			</S.Info>
 		</S.Wrapper>
 	);
 };
