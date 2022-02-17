@@ -29,4 +29,10 @@ describe("<Sidebar />", () => {
 		expect(screen.getByText(props.concurso)).toBeInTheDocument();
 		expect(screen.getByText("11/02/2022")).toBeInTheDocument();
 	});
+
+	it("Should render Sidebar with correct background", () => {
+		const { container } = renderWithTheme(<Sidebar {...props} />);
+
+		expect(container.firstChild).toHaveStyle({ backgroundColor: "#6BEFA3" });
+	});
 });
