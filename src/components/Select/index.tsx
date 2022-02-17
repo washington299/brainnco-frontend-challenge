@@ -10,7 +10,7 @@ type OptionsTypes = {
 };
 
 type SelectProps = {
-	defaultValue?: number;
+	defaultValue?: string;
 	onChange?: (payload: OptionsTypes) => void;
 };
 
@@ -34,8 +34,10 @@ export const Select = ({ defaultValue, onChange }: SelectProps) => {
 		!!onChange && onChange(payload);
 	};
 
+	const defaultSelected = options.find(item => item.nome === defaultValue);
+
 	return (
-		<S.Select ref={selectRef} value={defaultValue} onChange={changeSelect}>
+		<S.Select ref={selectRef} value={defaultSelected?.id} onChange={changeSelect}>
 			<option>Escolha uma loteria</option>
 			{options.map(lottery => (
 				<option key={lottery.id} value={lottery.id}>
