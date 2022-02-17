@@ -22,18 +22,19 @@ describe("<Select />", () => {
 	it("Should change select options", async () => {
 		renderWithTheme(<Select />);
 
-		await screen.findByRole("option", { name: /mega-sena/i });
+		const defaultOption = screen.getByRole("option", {
+			name: "Escolha uma loteria",
+		}) as HTMLOptionElement;
+		const megaSenaOption = (await screen.findByRole("option", {
+			name: /mega-sena/i,
+		})) as HTMLOptionElement;
 
 		const select = screen.getByRole("combobox");
 
-		expect(
-			(screen.getByRole("option", { name: "Escolha uma loteria" }) as HTMLOptionElement).selected,
-		).toBe(true);
+		expect(defaultOption.selected).toBe(true);
 
-		userEvent.selectOptions(select, screen.getByRole("option", { name: "mega-sena" }));
+		userEvent.selectOptions(select, megaSenaOption);
 
-		expect((screen.getByRole("option", { name: "mega-sena" }) as HTMLOptionElement).selected).toBe(
-			true,
-		);
+		expect(megaSenaOption.selected).toBe(true);
 	});
 });
