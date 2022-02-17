@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { QUERY } from "services/queries";
 
 type OptionsTypes = {
-	id: number;
+	id: number | string;
 	nome: string;
 };
 
-export const Select = () => {
+type SelectProps = {
+	onChange: (payload: OptionsTypes) => void;
+};
+
+export const Select = ({ onChange }: SelectProps) => {
 	const [options, setOptions] = useState<OptionsTypes[] | []>([]);
+
+	const selectRef = useRef<HTMLSelectElement>(null);
 
 	useEffect(() => {
 		(async () => {
@@ -18,8 +24,15 @@ export const Select = () => {
 		})();
 	}, []);
 
+	const changeSelect = () => {
+		const { value, text } = selectRef.current!.options[selectRef.current!.selectedIndex];
+		const payload = { id: value, nome: text };
+
+		onChange(payload);
+	};
+
 	return (
-		<select>
+		<select ref={selectRef} onChange={changeSelect}>
 			<option>Escolha uma loteria</option>
 			{options.map(lottery => (
 				<option key={lottery.id} value={lottery.id}>
