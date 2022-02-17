@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 
 import { QUERY } from "services/queries";
 
+import * as S from "./styles";
+
 type OptionsTypes = {
 	id: number | string;
 	nome: string;
@@ -33,13 +35,13 @@ export const Select = ({ defaultValue, onChange }: SelectProps) => {
 	};
 
 	return (
-		<select ref={selectRef} value={defaultValue} onChange={changeSelect}>
+		<S.Select ref={selectRef} value={defaultValue} onChange={changeSelect}>
 			<option>Escolha uma loteria</option>
 			{options.map(lottery => (
 				<option key={lottery.id} value={lottery.id}>
 					{lottery.nome}
 				</option>
 			))}
-		</select>
+		</S.Select>
 	);
 };
