@@ -13,6 +13,7 @@ export default createGlobalStyle`
 
 	body {
 		${({ theme }) => css`
+			background-color: ${theme.colors.background};
 			font-family: ${theme.font.family};
 			font-size: ${theme.font.size.medium};
 		`}
