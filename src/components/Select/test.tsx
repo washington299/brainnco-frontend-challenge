@@ -7,7 +7,7 @@ import { Select } from ".";
 
 describe("<Select />", () => {
 	it("Should render Select with correct options", async () => {
-		renderWithTheme(<Select />);
+		renderWithTheme(<Select onChange={() => ({})} />);
 
 		expect(screen.getByRole("combobox")).toBeInTheDocument();
 		expect(screen.getByRole("option", { name: /Escolha uma loteria/i })).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe("<Select />", () => {
 	});
 
 	it("Should change select options", async () => {
-		renderWithTheme(<Select />);
+		renderWithTheme(<Select onChange={() => ({})} />);
 
 		const defaultOption = screen.getByRole("option", {
 			name: "Escolha uma loteria",
@@ -36,5 +36,24 @@ describe("<Select />", () => {
 		userEvent.selectOptions(select, megaSenaOption);
 
 		expect(megaSenaOption.selected).toBe(true);
+	});
+
+	it("Should dispatch onChange function when option changes", async () => {
+		const mockOnChange = jest.fn();
+
+		renderWithTheme(<Select onChange={mockOnChange} />);
+
+		const megaSenaOption = (await screen.findByRole("option", {
+			name: /mega-sena/i,
+		})) as HTMLOptionElement;
+
+		const select = screen.getByRole("combobox");
+
+		expect(mockOnChange).not.toBeCalled();
+
+		userEvent.selectOptions(select, megaSenaOption);
+
+		expect(mockOnChange).toBeCalledTimes(1);
+		expect(mockOnChange).toHaveBeenCalledWith({ id: "0", nome: "mega-sena" });
 	});
 });
