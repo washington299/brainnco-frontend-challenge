@@ -8,10 +8,11 @@ type OptionsTypes = {
 };
 
 type SelectProps = {
-	onChange: (payload: OptionsTypes) => void;
+	defaultValue?: number;
+	onChange?: (payload: OptionsTypes) => void;
 };
 
-export const Select = ({ onChange }: SelectProps) => {
+export const Select = ({ defaultValue, onChange }: SelectProps) => {
 	const [options, setOptions] = useState<OptionsTypes[] | []>([]);
 
 	const selectRef = useRef<HTMLSelectElement>(null);
@@ -28,11 +29,11 @@ export const Select = ({ onChange }: SelectProps) => {
 		const { value, text } = selectRef.current!.options[selectRef.current!.selectedIndex];
 		const payload = { id: value, nome: text };
 
-		onChange(payload);
+		!!onChange && onChange(payload);
 	};
 
 	return (
-		<select ref={selectRef} onChange={changeSelect}>
+		<select ref={selectRef} value={defaultValue} onChange={changeSelect}>
 			<option>Escolha uma loteria</option>
 			{options.map(lottery => (
 				<option key={lottery.id} value={lottery.id}>
