@@ -27,7 +27,9 @@ export const Sidebar = ({ loteriaId, loteria, concurso, data }: SidebarProps) =>
 
 	return (
 		<S.Wrapper bgColor={backgroundColors[loteria]}>
-			<Select defaultValue={loteriaId} />
+			<S.SelectWrapper>
+				<Select defaultValue={loteriaId} />
+			</S.SelectWrapper>
 
 			<S.LogoContent>
 				<S.ImageWrapper>

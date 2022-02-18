@@ -6,13 +6,18 @@ type WrapperProps = {
 
 export const Wrapper = styled.section<WrapperProps>`
 	${({ theme, bgColor }) => css`
-		height: 100%;
 		display: grid;
+		grid-template-columns: 1fr;
 		align-items: center;
 		justify-content: center;
-		padding-bottom: ${theme.spacings.large};
+		padding: ${theme.spacings.xxlarge};
 		background-color: ${bgColor};
 	`}
+`;
+
+export const SelectWrapper = styled.div`
+	display: flex;
+	justify-content: center;
 `;
 
 export const LogoContent = styled.div`
@@ -31,7 +36,9 @@ export const ImageWrapper = styled.div`
 `;
 export const Info = styled.p`
 	${({ theme }) => css`
+		align-self: end;
 		color: ${theme.colors.white};
 		font-size: ${theme.font.size.xsmall};
+		text-align: center;
 	`}
 `;
