@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 
 import { QUERY } from "services/queries";
 
+import { formatStringToSlug } from "utils/parsers/formatSlug";
+
 import * as S from "./styles";
 
 type OptionsTypes = {
@@ -29,7 +31,7 @@ export const Select = ({ defaultValue, onChange }: SelectProps) => {
 
 	const changeSelect = () => {
 		const { value, text } = selectRef.current!.options[selectRef.current!.selectedIndex];
-		const payload = { id: value, nome: text };
+		const payload = { id: value, nome: formatStringToSlug(text) };
 
 		!!onChange && onChange(payload);
 	};
