@@ -53,17 +53,17 @@ describe("<Select />", () => {
 
 		renderWithTheme(<Select onChange={mockOnChange} />);
 
-		const megaSenaOption = (await screen.findByRole("option", {
-			name: /mega-sena/i,
+		const diaDeSorteOption = (await screen.findByRole("option", {
+			name: /dia de sorte/i,
 		})) as HTMLOptionElement;
 
 		const select = screen.getByRole("combobox");
 
 		expect(mockOnChange).not.toBeCalled();
 
-		userEvent.selectOptions(select, megaSenaOption);
+		userEvent.selectOptions(select, diaDeSorteOption);
 
 		expect(mockOnChange).toBeCalledTimes(1);
-		expect(mockOnChange).toHaveBeenCalledWith({ id: "0", nome: "mega-sena" });
+		expect(mockOnChange).toHaveBeenCalledWith({ id: "5", nome: "dia-de-sorte" });
 	});
 });
