@@ -3,39 +3,26 @@ import { NumbersList } from "components/NumbersList";
 
 import * as S from "./styles";
 
-const sidebarProps = {
-	loteriaId: 0,
-	loteria: "mega-sena",
-	concurso: "2359",
-	data: "2022-02-12T02:50:26.269Z",
+export type ConcursoTypes = {
+	concurso: string;
+	loteria: string;
+	loteriaId: number;
+	numeros: string[];
+	data: string;
 };
 
-const numbersListProps = {
-	numbers: [
-		"01",
-		"02",
-		"03",
-		"04",
-		"05",
-		"06",
-		"01",
-		"02",
-		"03",
-		"04",
-		"05",
-		"06",
-		"01",
-		"02",
-		"03",
-	],
-};
-
-export const ConcursoTemplate = () => {
+export const ConcursoTemplate = ({
+	concurso,
+	data,
+	loteria,
+	loteriaId,
+	numeros,
+}: ConcursoTypes) => {
 	return (
 		<S.Wrapper>
-			<Sidebar {...sidebarProps} />
+			<Sidebar concurso={concurso} data={data} loteria={loteria} loteriaId={loteriaId} />
 
-			<NumbersList {...numbersListProps} />
+			<NumbersList numbers={numeros} />
 		</S.Wrapper>
 	);
 };
