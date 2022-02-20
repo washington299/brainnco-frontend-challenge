@@ -6,7 +6,7 @@ import { formatStringToSlug } from "utils/parsers/formatSlug";
 
 import * as S from "./styles";
 
-type OptionsTypes = {
+export type OptionsTypes = {
 	id: number | string;
 	nome: string;
 };
