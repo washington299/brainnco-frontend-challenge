@@ -12,11 +12,6 @@ describe("<Select />", () => {
 		expect(screen.getByRole("combobox")).toBeInTheDocument();
 		expect(screen.getByRole("option", { name: /Escolha uma loteria/i })).toBeInTheDocument();
 		expect(await screen.findByRole("option", { name: /mega-sena/i })).toBeInTheDocument();
-		expect(await screen.findByRole("option", { name: /quina/i })).toBeInTheDocument();
-		expect(await screen.findByRole("option", { name: /lotofácil/i })).toBeInTheDocument();
-		expect(await screen.findByRole("option", { name: /lotomania/i })).toBeInTheDocument();
-		expect(await screen.findByRole("option", { name: /timemania/i })).toBeInTheDocument();
-		expect(await screen.findByRole("option", { name: /dia de sorte/i })).toBeInTheDocument();
 	});
 
 	it("Should change select options", async () => {
