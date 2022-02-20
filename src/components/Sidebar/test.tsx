@@ -1,16 +1,17 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
 import { renderWithTheme } from "utils/tests/helpers";
 
 import { Sidebar } from ".";
 
-jest.mock("components/Select", () => {
-	return {
-		__esModule: true,
-		Select: function mock() {
-			return <div data-testid="Mock select"></div>;
-		},
-	};
-});
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const push = jest.fn();
+
+useRouter.mockImplementation(() => ({
+	push,
+}));
 
 const props = {
 	loteriaId: 0,
@@ -23,7 +24,6 @@ describe("<Sidebar />", () => {
 	it("Should render Sidebar with correct elements", () => {
 		renderWithTheme(<Sidebar {...props} />);
 
-		expect(screen.getByTestId(/mock select/i)).toBeInTheDocument();
 		expect(screen.getByRole("img", { name: /Logo sena/i })).toBeInTheDocument();
 		expect(screen.getByRole("heading", { name: props.loteria })).toBeInTheDocument();
 		expect(screen.getByText(props.concurso)).toBeInTheDocument();
@@ -34,5 +34,24 @@ describe("<Sidebar />", () => {
 		const { container } = renderWithTheme(<Sidebar {...props} />);
 
 		expect(container.firstChild).toHaveStyle({ backgroundColor: "#6BEFA3" });
+	});
+
+	it("Should call push with correct URL params", async () => {
+		renderWithTheme(<Sidebar {...props} />);
+
+		const quinaOption = await screen.findByRole("option", {
+			name: /quina/i,
+		});
+		const select = screen.getByRole("combobox");
+
+		expect(quinaOption).toBeInTheDocument();
+
+		userEvent.selectOptions(select, quinaOption);
+
+		await waitFor(() =>
+			expect(push).toHaveBeenCalledWith({
+				pathname: "/loterias/quina/5534",
+			}),
+		);
 	});
 });
