@@ -27,6 +27,10 @@ export const Select = ({ defaultValue, onChange }: SelectProps) => {
 
 			setOptions(data);
 		})();
+
+		return () => {
+			setOptions([]);
+		};
 	}, []);
 
 	const changeSelect = () => {
