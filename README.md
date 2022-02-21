@@ -2,7 +2,7 @@
 
 Uma **aplicação web front-end** que mostra **Resultados das loterias**.
 
-Site:
+Site: https://brainnco-frontend-challenge-washington.vercel.app
 
 #### Desktop:
 
